@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+      <div class="box">
+          <header>
+             <span><img src="./images/1_03.gif" alt=""></span> 
+             <span class="two">
+                 <p>云数据库</p>
+                 <p>安全可靠的数据服务，人气甄选，轻松管理</p>
+             </span>
+          </header>
+          <main>
+              <ul class="list">
+                  <!-- <li>
+                      <p class="first"><span><input type="radio">MYSQL</span><span class="tian">60天</span></p>
+                      <p class="second">
+                          <span>2和<b>CPU</b></span>
+                          <span>2和<b>CPU</b></span>
+                          <span>2和<b>CPU</b></span>
+                          <span>2和<b>CPU</b></span>
+                      </p>
+                  </li> -->
+                  
+              </ul>
+          </main>
+          <footer>
+              <span>
+                <p>MYSQL</p>
+                <p><b>免费试用</b>60天</p>
+                <p class="last">原价￥1020.00</p>
+              </span>
+              <button>立即领取…</button>
+          </footer>
+      </div>
+      <script>
+          $.ajax({
+              url:"data/data.json",
+              dataType:"json",
+              success:function(data){
+                  xuan(data);
+              }
+          })
+          function xuan (data){
+              console.log(data);
+              var str = "";
+              data.forEach(function(file){
+                  console.log(file);
+                  str+=`
+                  <li>
+                      <p class="first"><span><input type="radio">${file.title}</span><span class="tian">${file.month}天</span></p>
+                      <p class="second">
+                          <span>${file.he}<b>CPU</b></span>
+                          <span>${file.gb}<b>内存</b></span>
+                          <span>${file.xt}<b>系统盘</b></span>
+                          <span>${file.shuju}<b>数据盘</b></span>
+                      </p>
+                  </li>
+                  `;
+              })
+              $(".list").html(str);
+          }
+          
+          $(".list").on("click","li",function(){
+               //$(this).addClass("active");
+               $(this).toggleClass("active"); 
+            
+          })
+        
+          
+          
+          
+      </script>
+</body>
+</html>
